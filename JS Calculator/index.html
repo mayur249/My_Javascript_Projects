@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header here -->
+    <div style="text-align: center; padding: 1px">
+      <h1>A SIMPLE CALCULATOR</h1>
+    </div>
+    <!-- CONTENT HERE -->
+    <table>
+      <tr>
+        <td colspan="2">
+          <input id="input1" type="number" placeholder="Enter a Number" />
+        </td>
+        <td colspan="2">
+          <input id="input2" type="number" placeholder="Enter a Number" />
+        </td>
+      </tr>
+      <tr>
+        <td><button id="add" onclick="arith(`add`)">Addition</button></td>
+        <td><button id="sub" onclick="arith(`sub`)">Sbutraction</button></td>
+        <td><button id="mul" onclick="arith(`mul`)">Multiplication</button></td>
+        <td><button id="div" onclick="arith(`div`)">Division</button></td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center">
+          <input id="output" placeholder="Output" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center">
+          <button id="clear" onclick="arith(`clear`)">Clear All</button>
+        </td>
+      </tr>
+    </table>
+    <!-- FOOTER -->
+    <footer>
+      Made by &nbsp;
+      <a href="https://jayrajshah.github.io/" target="_blank">Jayraj Shah </a>
+      &nbsp;| 4AL17CS036 |&nbsp;
+      <a href="https://github.com/JayrajShah" target="_blank"> Github</a>
+    </footer>
+
+    <!-- JAVASCRIPT HERE -->
+    <script>
+      //Input fileds
+      const input1 = document.getElementById("input1");
+      const input2 = document.getElementById("input2");
+
+      //Operation Buttons
+      const addBtn = document.getElementById("add");
+      const subBtn = document.getElementById("sub");
+      const mulBtn = document.getElementById("mul");
+      const divBtn = document.getElementById("div");
+      const clearBtn = document.getElementById("clear");
+
+      //Output field
+      const output = document.getElementById("output");
+
+      function arith(operation) {
+        console.log(operation);
+        if (input1.value.length > 0 && input2.value.length > 0) {
+          switch (operation) {
+            case "add":
+              output.value = parseInt(input1.value) + parseInt(input2.value);
+              break;
+            case "sub":
+              output.value = parseInt(input1.value) - parseInt(input2.value);
+              break;
+            case "mul":
+              output.value = parseInt(input1.value) * parseInt(input2.value);
+              break;
+            case "div":
+              let op = parseInt(input1.value) / parseInt(input2.value);
+              //Check for Divided by zero Error
+              if (op === Infinity) {
+                input1.value = input2.value = output.value = "";
+                alert("Divided by zero error");
+              } else {
+                output.value = op;
+              }
+
+              break;
+
+            case "clear":
+              input1.value = input2.value = output.value = "";
+              break;
+          }
+        } else {
+          input1.value = input2.value = output.value = "";
+          alert("Field is empty");
+        }
+      }
+    </script>
+  </body>
+</html>
